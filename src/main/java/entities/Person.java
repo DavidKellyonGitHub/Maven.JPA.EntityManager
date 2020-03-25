@@ -1,26 +1,33 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class Person {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String first_name;
     String last_name;
     String email;
     String gender;
-    String date_of_birth;
+    Date date_of_birth;
     String country_of_birth;
 
     @OneToMany()
     private Set<Person> people;
+
+    public Person(String first_name, String last_name, String email, String gender, Date date_of_birth, String country_of_birth) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.gender = gender;
+        this.date_of_birth = date_of_birth;
+        this.country_of_birth = country_of_birth;
+    }
 
     public Person() {
         people = new HashSet<Person>();
@@ -66,11 +73,11 @@ public class Person {
         this.gender = gender;
     }
 
-    public String getDate_of_birth() {
+    public Date getDate_of_birth() {
         return date_of_birth;
     }
 
-    public void setDate_of_birth(String date_of_birth) {
+    public void setDate_of_birth(Date date_of_birth) {
         this.date_of_birth = date_of_birth;
     }
 

@@ -15,4 +15,11 @@ public class PersonService {
     public Person findByID(int id){
         return em.find(Person.class,id);
     }
+
+    public void persistPerson(Person person){
+        em.getTransaction().begin();
+        em.persist(person);
+        em.getTransaction().commit();
+
+    }
 }
